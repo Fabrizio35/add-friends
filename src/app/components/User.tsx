@@ -126,7 +126,9 @@ const User: React.FC<UserProps> = ({ user }) => {
       <div className="flex flex-col w-full">
         <div className="flex text-first items-center gap-2">
           {user.name.newName ? (
-            <h2 className="text-2xl font-medium">{user.name.newName}</h2>
+            <h2 className="text-2xl font-medium break-all">
+              {user.name.newName}
+            </h2>
           ) : (
             <h2 className="text-2xl font-medium">
               {user.name.first} {user.name.last}

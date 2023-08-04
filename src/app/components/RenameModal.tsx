@@ -1,10 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAppDispatch } from "../redux/hooks";
 import { changeUserName, setOpenModalRename } from "../redux/userSlice";
+
+const validate = (inputValue: string) => {
+  let error = "";
+
+  if (!inputValue) {
+    error = "Enter a name";
+  }
+
+  if (inputValue.length > 24) {
+    error = "Maximum characters: 25";
+  }
+
+  return error;
+};
 
 const RenameModal: React.FC = () => {
   const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
   const closeModalHandler = () => {
     dispatch(setOpenModalRename(false));
@@ -13,6 +28,7 @@ const RenameModal: React.FC = () => {
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInputValue(value);
+    setError(validate(inputValue));
   };
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
@@ -20,6 +36,10 @@ const RenameModal: React.FC = () => {
     dispatch(changeUserName(inputValue));
     dispatch(setOpenModalRename(false));
   };
+
+  useEffect(() => {
+    setError(validate(inputValue));
+  }, [inputValue]);
 
   return (
     <div className="w-screen h-screen bg-blackTransparent fixed flex items-center justify-center z-20">
@@ -52,7 +72,11 @@ const RenameModal: React.FC = () => {
             onChange={changeHandler}
             className="border-2 border-third w-72 h-10 p-3 text-first rounded-md"
           />
-          <button className="bg-third text-white p-1.5 text-xl rounded-xl">
+          {error && <span className="text-red-600">{error}</span>}
+          <button
+            disabled={error ? true : false}
+            className="bg-third text-white p-1.5 text-xl rounded-xl disabled:bg-gray-600 disabled:cursor-not-allowed"
+          >
             Rename
           </button>
         </form>
