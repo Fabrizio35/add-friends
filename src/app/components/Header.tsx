@@ -30,7 +30,7 @@ const Header: React.FC = () => {
           </svg>
         </Link>
 
-        <nav className="flex items-center mr-10">
+        <nav className="flex items-center sm:mr-5">
           {path === "/" ? (
             <Link
               href="/friends"
