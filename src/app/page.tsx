@@ -15,7 +15,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!users.length) {
-      fetch("https://randomuser.me/api/?results=99")
+      fetch("https://randomuser.me/api/?results=33")
         .then((res) => res.json())
         .then((data) => dispatch(getUsers(data.results)));
     }
