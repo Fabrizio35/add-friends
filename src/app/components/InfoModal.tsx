@@ -145,7 +145,7 @@ const InfoModal: React.FC = ({}) => {
               <path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z"></path>
               <path d="M19 18v.01"></path>
             </svg>
-            <span>
+            <span className="text-center">
               Location: {user?.location.city} - {user?.location.state} -{" "}
               {user?.location.country} ({user?.nat})
             </span>
@@ -170,7 +170,7 @@ const InfoModal: React.FC = ({}) => {
               <path d="M18.828 17.828a4 4 0 1 0 -5.656 0l2.828 2.829l2.828 -2.829z"></path>
               <path d="M16 15l0 .01"></path>
             </svg>
-            <span>
+            <span className="text-center">
               Street: {user?.location.street.name}{" "}
               {user?.location.street.number}
             </span>
